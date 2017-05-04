@@ -506,7 +506,7 @@ default_t defaults[] =
   {"mouse_sensitivity_horiz",{&mouseSensitivity_horiz},{10},0,UL,
    def_int,ss_none}, /* adjust horizontal (x) mouse sensitivity killough/mead */
   //jff 4/3/98 allow unlimited sensitivity
-  {"mouse_sensitivity_vert",{&mouseSensitivity_vert},{10},0,UL,
+  {"mouse_sensitivity_vert",{&mouseSensitivity_vert},{1},0,UL,
    def_int,ss_none}, /* adjust vertical (y) mouse sensitivity killough/mead */
   //jff 3/8/98 allow -1 in mouse bindings to disable mouse function
   {"mouseb_fire",{&mousebfire},{0},-1,MAX_MOUSEB,
