@@ -2488,6 +2488,10 @@ void M_DrawKeybnd(void)
 #define WP_X 203
 #define WP_Y  33
 
+static const char *weapon_attack_alignment_strings[] = {
+  "OFF", "HORIZONTAL", "CENTERED", "BOBBING", NULL
+};
+
 // There's only one weapon settings screen (for now). But since we're
 // trying to fit a common description for screens, it gets a setup_menu_t,
 // which only has one screen definition in it.
@@ -2498,7 +2502,7 @@ void M_DrawKeybnd(void)
 enum {           // killough 10/98: enum for y-offset info
   weap_recoil,
   weap_bobbing,
-  weap_bfg,
+  weap_attack_alignment,
   weap_stub1,
   weap_pref1,
   weap_pref2,
@@ -2526,6 +2530,7 @@ setup_menu_t weap_settings1[] =  // Weapons Settings screen
 {
   {"ENABLE RECOIL", S_YESNO,m_null,WP_X, WP_Y+ weap_recoil*8, {"weapon_recoil"}},
   {"ENABLE BOBBING",S_YESNO,m_null,WP_X, WP_Y+weap_bobbing*8, {"player_bobbing"}},
+  {"WEAPON ATTACK ALIGNMENT",S_CHOICE,m_null,WP_X, WP_Y+weap_attack_alignment*8, {"weapon_attack_alignment"}, 0, 0, NULL, weapon_attack_alignment_strings},
 
   {"1ST CHOICE WEAPON",S_WEAP,m_null,WP_X,WP_Y+weap_pref1*8, {"weapon_choice_1"}},
   {"2nd CHOICE WEAPON",S_WEAP,m_null,WP_X,WP_Y+weap_pref2*8, {"weapon_choice_2"}},
