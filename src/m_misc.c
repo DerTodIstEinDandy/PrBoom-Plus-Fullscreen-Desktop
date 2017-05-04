@@ -280,7 +280,7 @@ default_t defaults[] =
   {"player_bobbing",{&default_player_bobbing},{1},0,1,         // phares 2/25/98
    def_bool,ss_weap, &player_bobbing},
   {"weapon_attack_alignment",{&weapon_attack_alignment},{0},0,3,         // phares 2/25/98
-   def_bool,ss_weap, &weapon_attack_alignment},
+   def_int,ss_weap, &weapon_attack_alignment},
   {"monsters_remember",{&default_monsters_remember},{1},0,1,   // killough 3/1/98
    def_bool,ss_enem, &monsters_remember},
    /* MBF AI enhancement options */
