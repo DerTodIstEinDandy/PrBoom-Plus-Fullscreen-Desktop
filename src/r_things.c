@@ -938,7 +938,6 @@ static void R_DrawPSprite (pspdef_t *psp)
   fixed_t       topoffset;
   fixed_t       psp_sx = psp->sx;
   fixed_t       psp_sy = psp->sy;
-  const int state = viewplayer->psprites[ps_weapon].state - states;
 
   // decide which patch to use
 
@@ -960,27 +959,20 @@ static void R_DrawPSprite (pspdef_t *psp)
   lump = sprframe->lump[0];
   flip = (dboolean)(sprframe->flip & 1);
 
-  // [crispy] smoothen Chainsaw idle animation
-  if (state == S_SAW || state == S_SAWB)
+  // [crispy] center the weapon sprite horizontally and vertically
+  if (weapon_attack_alignment && viewplayer->attackdown && !psp->state->misc1)
   {
-      R_ApplyWeaponBob(&psp_sx, true, &psp_sy, true);
-  }
-  else
-  {
-    // [crispy] center the weapon sprite horizontally and vertically
-    if (weapon_attack_alignment && viewplayer->attackdown && !psp->state->misc1)
-    {
-        const weaponinfo_t *const winfo = &weaponinfo[viewplayer->readyweapon];
+      const weaponinfo_t *const winfo = &weaponinfo[viewplayer->readyweapon];
+      const int state = viewplayer->psprites[ps_weapon].state - states;
 
-        R_ApplyWeaponBob(&psp_sx, weapon_attack_alignment == CENTERWEAPON_BOB, NULL, false);
+      R_ApplyWeaponBob(&psp_sx, weapon_attack_alignment == CENTERWEAPON_BOB, NULL, false);
 
-        // [crispy] don't center vertically during lowering and raising states
-        if (weapon_attack_alignment >= CENTERWEAPON_HORVER &&
-            state != winfo->downstate && state != winfo->upstate)
-        {
-            R_ApplyWeaponBob(NULL, false, &psp_sy, weapon_attack_alignment == CENTERWEAPON_BOB);
-        }
-    }
+      // [crispy] don't center vertically during lowering and raising states
+      if (weapon_attack_alignment >= CENTERWEAPON_HORVER &&
+          state != winfo->downstate && state != winfo->upstate)
+      {
+          R_ApplyWeaponBob(NULL, false, &psp_sy, weapon_attack_alignment == CENTERWEAPON_BOB);
+      }
   }
 
   {
