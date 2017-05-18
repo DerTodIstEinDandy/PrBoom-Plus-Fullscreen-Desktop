@@ -3158,7 +3158,6 @@ setup_menu_t gen_settings3[] = { // General Settings screen2
 
   {"Movements",                   S_SKIP|S_TITLE,m_null,G_X, G_Y+7*8},
   {"Permanent Strafe50",          S_YESNO, m_null, G_X, G_Y+ 8*8, {"movement_strafe50"}, 0, 0, M_ChangeSpeed},
-  {"Strafe50 On Turns",           S_YESNO, m_null, G_X, G_Y+ 9*8, {"movement_strafe50onturns"}, 0, 0, M_ChangeSpeed},
 
   {"Mouse",                       S_SKIP|S_TITLE,m_null, G_X, G_Y+11*8},
   {"Dbl-Click As Use",            S_YESNO, m_null, G_X, G_Y+12*8, {"mouse_doubleclick_as_use"}},

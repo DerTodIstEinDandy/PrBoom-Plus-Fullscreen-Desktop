@@ -371,7 +371,6 @@ void G_SetSpeed(void)
   }
   else
   {
-    movement_strafe50onturns = false;
     sidemove[0] = sidemove_normal[0];
     sidemove[1] = sidemove_normal[1];
   }
@@ -722,21 +721,13 @@ void G_BuildTiccmd(ticcmd_t* cmd)
   //e6y
   if (movement_strafe50)
   {
-    if (!speed)
+    if(!strafe && cmd->angleturn)
     {
-      if (side > sidemove_strafe50[0])
-        side = sidemove_strafe50[0];
-      else if (side < -sidemove_strafe50[0])
-        side = -sidemove_strafe50[0];
+      if (side > sidemove_normal[speed])
+        side = sidemove_normal[speed];
+      else if (side < -sidemove_normal[speed])
+        side = -sidemove_normal[speed];
     }
-    else if(!movement_strafe50onturns && !strafe && cmd->angleturn)
-    {
-      if (side > sidemove_normal[1])
-        side = sidemove_normal[1];
-      else if (side < -sidemove_normal[1])
-        side = -sidemove_normal[1];
-    }
-
   }
 
   cmd->forwardmove += fudgef((signed char)forward);
