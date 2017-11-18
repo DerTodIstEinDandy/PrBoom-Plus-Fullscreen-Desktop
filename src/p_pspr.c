@@ -729,6 +729,10 @@ static void P_BulletSlope(mobj_t *mo)
 {
   angle_t an = mo->angle;    // see which target is to be aimed at
 
+  if (comperr(comperr_freeaim))
+    bulletslope = finetangent[(ANG90 - mo->pitch) >> ANGLETOFINESHIFT];
+  else
+  {
   /* killough 8/2/98: make autoaiming prefer enemies */
   uint_64_t mask = mbf_features ? MF_FRIEND : 0;
 
@@ -741,9 +745,7 @@ static void P_BulletSlope(mobj_t *mo)
   bulletslope = P_AimLineAttack(mo, an -= 2<<26, 16*64*FRACUNIT, mask);
     }
   while (mask && (mask=0, !linetarget));  /* killough 8/2/98 */
-  
-  if (!linetarget && comperr(comperr_freeaim))
-    bulletslope = finetangent[(ANG90 - mo->pitch) >> ANGLETOFINESHIFT];
+  }
 }
 
 //

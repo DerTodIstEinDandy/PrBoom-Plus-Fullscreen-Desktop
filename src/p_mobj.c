@@ -1611,6 +1611,9 @@ void P_SpawnPlayerMissile(mobj_t* source,mobjtype_t type)
   angle_t an = source->angle;
 
   // killough 7/19/98: autoaiming was not in original beta
+  if (comperr(comperr_freeaim))
+    slope = finetangent[(ANG90 - source->pitch) >> ANGLETOFINESHIFT];
+  else
     {
       // killough 8/2/98: prefer autoaiming at enemies
       uint_64_t mask = mbf_features ? MF_FRIEND : 0;
@@ -1626,9 +1629,6 @@ void P_SpawnPlayerMissile(mobj_t* source,mobjtype_t type)
       an = source->angle, slope = 0;
   }
       while (mask && (mask=0, !linetarget));  // killough 8/2/98
-
-      if (!linetarget && comperr(comperr_freeaim))
-        slope = finetangent[(ANG90 - source->pitch) >> ANGLETOFINESHIFT];
     }
 
   x = source->x;
