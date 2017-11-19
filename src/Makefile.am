@@ -18,8 +18,13 @@ endif
 
 CFLAGS = @CFLAGS@ @SDL_CFLAGS@
 
+# r_draw.c takes considerably longer to compile than all other modules,
+# due to all the macro expansion. Thus starting it as early as possible
+# significantly reduces the time to complete a full rebuild in parallel.
 
 COMMON_SRC = \
+ r_draw.c \
+ r_draw.h \
  am_map.c \
  am_map.h \
  d_deh.c \
@@ -129,8 +134,6 @@ COMMON_SRC = \
  r_defs.h \
  r_demo.c \
  r_demo.h \
- r_draw.c \
- r_draw.h \
  r_filter.c \
  r_filter.h \
  r_fps.c \
