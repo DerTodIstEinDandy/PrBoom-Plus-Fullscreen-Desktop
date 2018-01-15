@@ -1381,7 +1381,7 @@ mobj_t* P_SpawnMapThing (const mapthing_t* mthing, int index)
       !(options & MTF_HARD) : !(options & MTF_NORMAL))
     return NULL;
 
-  if (thingtype >= 14101 && thingtype <= 14164)
+  if (thingtype >= 14100 && thingtype <= 14164)
   {
     // Use the ambient number
     iden_num = thingtype - 14100; // Mus change

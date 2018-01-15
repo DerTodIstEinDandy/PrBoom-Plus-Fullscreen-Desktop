@@ -59,11 +59,6 @@ musinfo_t musinfo;
 //
 void S_ParseMusInfo(const char *mapid)
 {
-  memset(&musinfo, 0, sizeof(musinfo));
-  musinfo.current_item = -1;
-
-  S_music[NUMMUSIC].lumpnum = -1;
-
   if (W_CheckNumForName("MUSINFO") != -1)
   {
     int num, lumpnum;
@@ -106,7 +101,7 @@ void S_ParseMusInfo(const char *mapid)
         }
         else
         {
-          lprintf(LO_ERROR, "S_ParseMusInfo: Number not in range 1 to %d", MAX_MUS_ENTRIES);
+          lprintf(LO_ERROR, "S_ParseMusInfo: Number not in range 1 to %d", MAX_MUS_ENTRIES - 1);
         }
       }
     }
