@@ -111,6 +111,7 @@ int gl_depthbuffer_bits=16;
 extern void M_QuitDOOM(int choice);
 int use_fullscreen;
 int desired_fullscreen;
+int fullscreen_desktop;
 int render_vsync;
 int screen_multiply;
 int render_screen_multiply;
@@ -965,6 +966,12 @@ void I_InitScreenResolution(void)
     if ((p = M_CheckParm("-nowindow")))
       desired_fullscreen = 1;
 
+	// DTIED
+	// Command-line option to use fullscreen desktop mode in software renderer
+	fullscreen_desktop = 0;
+	if ((p = M_CheckParm("-fsdesktop")))
+		fullscreen_desktop = 1;
+
     // e6y
     // change the screen size for the current session only
     // syntax: -geom WidthxHeight[w|f]
@@ -1167,8 +1174,11 @@ void I_UpdateVideoMode(void)
     init_flags = SDL_WINDOW_OPENGL;
   }
 
-  if ( desired_fullscreen )
-    init_flags |= SDL_WINDOW_FULLSCREEN;
+  // Fullscreen desktop for software renderer only - DTIED
+  if (fullscreen_desktop && desired_fullscreen && V_GetMode() != VID_MODEGL)
+	  init_flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+  else if (desired_fullscreen)
+	  init_flags |= SDL_WINDOW_FULLSCREEN;
 
   // In windowed mode, the window can be resized while the game is
   // running.  This feature is disabled on OS X, as it adds an ugly
