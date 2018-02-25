@@ -80,54 +80,54 @@ int cap_frac;
 // TODO: add aspect ratio information
 //
 // Modified to work with SDL2 resizeable window and fullscreen desktop - DTIED
-static int parsecommand (char *out, const char *in, int len)
+static int parsecommand(char *out, const char *in, int len)
 {
-  int i;
+	int i;
 
-  while (*in && len > 1)
-  {
-    if (*in == '%')
-    {
-	  I_UpdateRenderSize(); // Handle potential resolution scaling - DTIED
-      switch (in[1])
-      {
-        case 'w':
-		  i = doom_snprintf(out, len, "%u", renderW);
-          break;
-        case 'h':
-		  i = doom_snprintf(out, len, "%u", renderH);
-          break;
-        case 's':
-          i = doom_snprintf (out, len, "%u", snd_samplerate);
-          break;
-        case 'f':
-          i = doom_snprintf (out, len, "%s", vid_fname);
-          break;
-        case 'r':
-          i = doom_snprintf (out, len, "%u", cap_fps);
-          break;
-        case '%':
-          i = doom_snprintf (out, len, "%%");
-          break;
-        default:
-          return 0;
-      }
-      out += i;
-      len -= i;
-      in += 2;
-    }
-    else
-    {
-      *out++ = *in++;
-      len--;
-    }
-  }
-  if (*in || len < 1)
-  { // out of space
-    return 0;
-  }
-  *out = 0;
-  return 1;
+	while (*in && len > 1)
+	{
+		if (*in == '%')
+		{
+			I_UpdateRenderSize(); // Handle potential resolution scaling - DTIED
+			switch (in[1])
+			{
+			case 'w':
+				i = doom_snprintf(out, len, "%u", renderW);
+				break;
+			case 'h':
+				i = doom_snprintf(out, len, "%u", renderH);
+				break;
+			case 's':
+				i = doom_snprintf(out, len, "%u", snd_samplerate);
+				break;
+			case 'f':
+				i = doom_snprintf(out, len, "%s", vid_fname);
+				break;
+			case 'r':
+				i = doom_snprintf(out, len, "%u", cap_fps);
+				break;
+			case '%':
+				i = doom_snprintf(out, len, "%%");
+				break;
+			default:
+				return 0;
+			}
+			out += i;
+			len -= i;
+			in += 2;
+		}
+		else
+		{
+			*out++ = *in++;
+			len--;
+		}
+	}
+	if (*in || len < 1)
+	{ // out of space
+		return 0;
+	}
+	*out = 0;
+	return 1;
 }
 
 
