@@ -82,7 +82,7 @@ typedef struct
   fixed_t sy;
 } pspdef_t;
 
-typedef enum
+enum
 {
     CENTERWEAPON_OFF,
     CENTERWEAPON_HOR,

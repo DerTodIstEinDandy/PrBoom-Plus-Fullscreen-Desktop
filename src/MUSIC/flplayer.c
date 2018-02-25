@@ -108,7 +108,8 @@ static const char *fl_name (void)
 static int fl_init (int samplerate)
 {
   const char *filename;
-#ifdef _WIN32
+/*
+  #ifdef _WIN32
   #ifndef _MSC_VER
   DWORD WINAPI GetVersion (void);
   #endif // _MSC_VER
@@ -118,7 +119,7 @@ static int fl_init (int samplerate)
     lprintf (LO_INFO, "Fluidplayer: Win9x is not supported\n");
     return 0;
   }
-#endif // _WIN32
+#endif // _WIN32 */ // SDL2 program will not run on Win9x anyway - DTIED
 
   TESTDLLLOAD ("libfluidsynth.dll", TRUE)
 
