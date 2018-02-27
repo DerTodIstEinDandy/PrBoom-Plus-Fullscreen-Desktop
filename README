@@ -1,3 +1,52 @@
+==================== PrBoom+ 2.5.1.5 - fullscreen desktop edition ====================
+
+Updated README.
+See the original README below.
+
+------------------------------------- Features -------------------------------------
+
+		* Added "-fsdesktop" command line argument. Use it and select any software 
+		fullscreen mode to enable the "fake fullscreen" video mode. Now, if you 
+		set low ingame resolution, you should see all the pixelated graphics sharp 
+		and non-blurry, correctly upscaled to the desktop resolution. 
+		Doesn't work with OpenGL renderer.
+		Example:
+	
+			prboom-plus.exe -width 320 -height 240 -fullscreen -fsdesktop
+			
+		* Support for video capture in fullscreen desktop mode. NOTE: Recording videos 
+		with -fsdesktop WILL be SLOW. Video will be recorded at the desktop resolution!
+		Also, fixed crash on a screen grab after a game window was resized/maximized.
+
+------------------------------ Source compilation notes ------------------------------
+
+Visual Studio 2015 solution is now included into the project.
+To compile on Windows, you will need the following dependencies:
+
+	- SDL2 2.0.4 or newer
+	- SDL2_mixer 2.0.1 or newer
+	- SDL2_image 2.0.1 or newer
+	- SDL2_net 2.0.1 or newer
+	- Pcre for Windows - lib/def packages and binaries packages
+		are availible at: http://gnuwin32.sourceforge.net/packages/pcre.htm
+		You may need to generate pcreposix3.lib and pcre3.lib from
+		the corresponding .dlls using .def files.
+		
+If you're going to use the VS2015 solution, you can just place the header files 
+into "C:\dev\include", and the lib files into "C:\dev\lib". If you don't like
+these placements, edit the solution properties to better suit your needs.
+
+Thanks to Graf Zahl ( https://github.com/coelckers ) for helpful posts
+on Doomworld forums / VS solution update.
+
+  -- DerTodIstEinDandy
+
+
+
+===================================================
+----------------- ORIGINAL README -----------------
+===================================================
+
 PrBoom 2.5.1.5
 
 PrBoom is a version of the classic 3D shoot'em'up game Doom, originally
